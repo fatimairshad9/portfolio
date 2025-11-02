@@ -2,7 +2,6 @@
   "name": "my-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://fatimairshad9.github.io/portfolio",
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
     "@emailjs/browser": "^4.4.1",
