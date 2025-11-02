@@ -81,10 +81,10 @@ const BlogsSection: React.FC = () => {
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
         <Title level={2} style={{ marginBottom: 10 }}>
-          Blog
+          Blogs
         </Title>
         <Paragraph style={{ color: "#888", marginBottom: 50 }}>
-          Explore my latest articles about React, UI/UX, and front-end
+          Explore my latest articles about React,front-end and Quality assurance
           development best practices.
         </Paragraph>
 

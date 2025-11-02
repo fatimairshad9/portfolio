@@ -32,34 +32,26 @@ const projects = [
   },
 ];
 
-
 const Projects: React.FC = () => {
   return (
     <section
       id="projects"
       style={{
-        padding: "80px 20px",
+        padding: "60px 10px",
         background: "linear-gradient(to right, #f9f9ff, #f0faff)",
-        margin:'30px'
       }}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <Title
-          level={2}
-          style={{
-            textAlign: "center",
-            marginBottom: 60,
-            color: "#111",
-          }}
-        >
+      <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
+        <Title level={2} style={{ marginBottom: 40, color: "#111" }}>
           My Projects
         </Title>
 
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
-            gap: "32px",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "24px",
+            justifyContent: "center",
           }}
         >
           {projects.map((project, i) => (
@@ -70,19 +62,25 @@ const Projects: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.6 }}
               whileHover={{ scale: 1.02 }}
+              style={{
+                flex: "1 1 300px",
+                maxWidth: 350,
+                minWidth: 280,
+              }}
             >
               <Card
                 hoverable
                 style={{
-                  borderRadius: 12,
+                  borderRadius: 16,
                   overflow: "hidden",
-                  height: "100%",
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-betwween   ",
+                  justifyContent: "space-between",
+                  height: "100%",
                   boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-                 
-
+                  transition: "transform 0.3s ease",
+                  background: "white",
+                  padding: "16px",
                 }}
                 cover={
                   <motion.img
@@ -91,9 +89,10 @@ const Projects: React.FC = () => {
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.4 }}
                     style={{
-                      width: "100%",  
-                      height: 220,
+                      width: "100%",
+                      height: 180,
                       objectFit: "cover",
+                      borderRadius: "12px",
                     }}
                   />
                 }
@@ -103,7 +102,7 @@ const Projects: React.FC = () => {
                     style={{
                       color: "#888",
                       letterSpacing: 1,
-                      fontSize: 13,
+                      fontSize: 12,
                       textTransform: "uppercase",
                     }}
                   >
@@ -112,20 +111,16 @@ const Projects: React.FC = () => {
 
                   <Title
                     level={4}
-                    style={{
-                      marginTop: 10,
-                      marginBottom: 12,
-                      color: "#111",
-                    }}
+                    style={{ marginTop: 8, marginBottom: 10, color: "#111" }}
                   >
                     {project.title}
                   </Title>
 
                   <Paragraph
                     style={{
-                      fontSize: 15,
+                      fontSize: 14,
                       color: "#555",
-                      lineHeight: 1.7,
+                      lineHeight: 1.6,
                       minHeight: 70,
                     }}
                   >
