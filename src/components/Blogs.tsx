@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Typography } from "antd";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -33,7 +33,7 @@ const blogs = [
     description:
       "Learn how to write modular and reusable components that scale across projects.",
   },
-    {
+  {
     slug: "postman-tips",
     image: "/postman-tips.png",
     date: "Oct 30, 2024",
@@ -41,7 +41,7 @@ const blogs = [
     description:
       "Speed up your API testing workflow with these essential Postman tips and automation tricks.",
   },
-      {
+  {
     slug: "qa-chrome-extensions",
     image: "/qa-chrome-extensions.jpg",
     date: "Oct 30, 2024",
@@ -49,13 +49,9 @@ const blogs = [
     description:
       "Discover top Chrome extensions to boost testing and debugging efficiency.",
   },
-
-
 ];
 
 const BlogsSection: React.FC = () => {
-  const navigate = useNavigate();
-
   const settings = {
     dots: true,
     infinite: true,
@@ -65,8 +61,24 @@ const BlogsSection: React.FC = () => {
     autoplay: true,
     autoplaySpeed: 3500,
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 768, settings: { slidesToShow: 1 } },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
     ],
   };
 
@@ -74,17 +86,30 @@ const BlogsSection: React.FC = () => {
     <section
       id="blogs"
       style={{
-        padding: "80px 20px",
-        margin: "30px",
+        padding: "60px 15px",
         background: "linear-gradient(to right, #f9f9ff, #f0faff)",
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
-        <Title level={2} style={{ marginBottom: 10 }}>
+        <Title
+          level={2}
+          style={{
+            marginBottom: 10,
+            fontSize: "clamp(22px, 4vw, 32px)",
+          }}
+        >
           Blogs
         </Title>
-        <Paragraph style={{ color: "#888", marginBottom: 50 }}>
-          Explore my latest articles about React,front-end and Quality assurance
+
+        <Paragraph
+          style={{
+            color: "#888",
+            marginBottom: 40,
+            fontSize: "clamp(14px, 2vw, 16px)",
+            padding: "0 10px",
+          }}
+        >
+          Explore my latest articles about React, front-end and quality assurance
           development best practices.
         </Paragraph>
 
@@ -94,51 +119,60 @@ const BlogsSection: React.FC = () => {
               key={index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
               viewport={{ once: true }}
-              style={{ padding: "0 12px" }}
+              style={{ padding: "0 10px" }}
             >
-                <Link to={`/blogs/${blog.slug}`} style={{ textDecoration: "none" }}>
-
-              <Card
-                hoverable
-                onClick={() => navigate(`/blogs/${blog.slug}`)}
-                cover={
-                  <img
-                    src={blog.image}
-                    alt={blog.title}
+              <Link to={`/blogs/${blog.slug}`} style={{ textDecoration: "none" }}>
+                <Card
+                  hoverable
+                  cover={
+                    <img
+                      src={blog.image}
+                      alt={blog.title}
+                      style={{
+                        height: "200px",
+                        objectFit: "cover",
+                        width: "100%",
+                      }}
+                    />
+                  }
+                  style={{
+                    borderRadius: 16,
+                    overflow: "hidden",
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+                    margin: "10px 0",
+                    cursor: "pointer",
+                    transition: "transform 0.3s ease",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.transform = "translateY(-6px)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.transform = "translateY(0)")
+                  }
+                >
+                  <Paragraph style={{ fontSize: 13, color: "#888" }}>
+                    {blog.date}
+                  </Paragraph>
+                  <Title
+                    level={4}
                     style={{
-                      height: 220,
-                      objectFit: "cover",
+                      marginBottom: 8,
+                      fontSize: "clamp(16px, 3vw, 20px)",
                     }}
-                  />
-                }
-                style={{
-                  borderRadius: 16,
-                  overflow: "hidden",
-                  boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-                  textAlign: "left",
-                  margin: 20,
-                  cursor: "pointer",
-                  transition: "transform 0.3s ease",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.transform = "translateY(-5px)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.transform = "translateY(0)")
-                }
-              >
-                <Paragraph style={{ fontSize: 13, color: "#888" }}>
-                  {blog.date}
-                </Paragraph>
-                <Title level={4} style={{ marginBottom: 10 }}>
-                  {blog.title}
-                </Title>
-                <Paragraph style={{ fontSize: 15, color: "#666" }}>
-                  {blog.description}
-                </Paragraph>
-              </Card>
+                  >
+                    {blog.title}
+                  </Title>
+                  <Paragraph
+                    style={{
+                      fontSize: "clamp(13px, 2vw, 15px)",
+                      color: "#666",
+                    }}
+                  >
+                    {blog.description}
+                  </Paragraph>
+                </Card>
               </Link>
             </motion.div>
           ))}
